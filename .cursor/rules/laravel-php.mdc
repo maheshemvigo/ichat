@@ -1,0 +1,33 @@
+---
+description: Laravel 5.6 and PHP backend conventions
+globs: app/**/*.php
+alwaysApply: false
+---
+
+# Laravel / PHP Rules
+
+## Controllers
+
+- Follow existing try/catch + `report($e)` pattern
+- Auth checks: `Auth::user()->type == 1` for admin
+- Use existing route naming in `routes/web.php`
+
+## Models
+
+- Models in `app/` with minimal Eloquent relations
+- No new ORM packages
+
+## Jobs & Events
+
+- Queue jobs implement `ShouldQueue` like `GenerateSimulationHistoryReportJob`
+- Broadcast events implement `ShouldBroadcast` like `PrivateMessageSent`
+
+## Database
+
+- Migrations in `database/migrations/`
+- Also add SQL to `docker/mysql/` for existing Docker DBs
+- MySQL 5.7 compatible only
+
+## Example — simulation create side effect
+
+When adding chat_users rows, update both `store()` and `update()` in `SimulationController.php`.

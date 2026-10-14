@@ -1,0 +1,30 @@
+---
+description: MySQL migrations and SQL scripts
+globs: database/**/*,docker/mysql/**/*
+alwaysApply: false
+---
+
+# Database Rules
+
+## Tables (key)
+
+- `simulations`, `users`, `admin_users`, `chat_users`, `messages`, `tokens`
+- `upload_files`, `favourite_images`, `jobs`
+
+## chat_users naming (private threads)
+
+`{Terminal}-{AdminName}-{Role}` e.g. `T1-Keith O'Brien-CEO`
+
+## Migrations
+
+- Use Laravel 5.6 migration format
+- Provide companion SQL in `docker/mysql/` for manual apply:
+
+```bash
+docker compose exec -T db mysql -u ichat -pichat_secret ichat < docker/mysql/your-file.sql
+```
+
+## Report summary
+
+- `simulations.history_summary_url` stores S3 object key — see `.cursor/features/report-summary.md`
+- SQL patch: `docker/mysql/04-add-history-summary-url.sql`

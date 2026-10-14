@@ -1,0 +1,71 @@
+.snavvy-container {
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  display: block;
+  height: auto;
+}
+
+.snavvy-fullscreen {
+  top: 0;
+  bottom: 0;
+}
+
+.snavvy {
+  position: fixed;
+  height: auto !important;
+  padding: 20px;
+  z-index: 99;
+  overflow: scroll;
+  background: #fff;
+  opacity: 1;
+  transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+}
+
+.has-container {
+  position: relative !important;
+}
+
+.get-snavvy {
+  opacity: 1;
+}
+
+#close-snavvy {
+  font-size: 40px !important;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.snavvy-links {
+  width: 100%;
+  position: relative;
+  display: block;
+}
+.snavvy-links ul {
+  padding: 0px;
+  margin: 0px;
+}
+.snavvy-links ul li {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.snavvy-links ul li a {
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+  padding: 5px;
+  color: #3f3f3f;
+}
+.snavvy-links ul li a:hover {
+  color: #DB6262;
+}

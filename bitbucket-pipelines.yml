@@ -1,0 +1,22 @@
+image: mesosphere/aws-cli
+pipelines:
+  branches:
+    qa:
+    - step:
+        script:
+        - apk update 
+        - apk add zip
+        - aws s3 cp --region eu-west-1 s3://ichat-lbs-conf/config/qa-ichat.emvigotechnologies.com/install .
+        - aws s3 cp --region eu-west-1 s3://ichat-lbs-conf/config/qa-ichat.emvigotechnologies.com/appspec.yml .
+        - zip -r --exclude=*.git* ichat.emvigotechnologies.com.zip .
+        - aws s3 cp --region eu-west-1 ichat.emvigotechnologies.com.zip s3://ichat-lbs-conf/code/qa-ichat.emvigotechnologies.com.zip
+    dev:
+    - step:
+        script:
+        - apk update
+        - apk add zip
+        - aws s3 cp --region eu-west-1 s3://ichat-lbs-conf/config/dev-ichat.emvigotechnologies.com/install .
+        - aws s3 cp --region eu-west-1 s3://ichat-lbs-conf/config/dev-ichat.emvigotechnologies.com/appspec.yml .
+        - zip -r --exclude=*.git* ichat.emvigotechnologies.com.zip .
+        - aws s3 cp --region eu-west-1 ichat.emvigotechnologies.com.zip s3://ichat-lbs-conf/code/dev-ichat.emvigotechnologies.com.zip
+    

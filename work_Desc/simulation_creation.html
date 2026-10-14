@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Simulation Creation</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   </head>
+   <style>
+      .border{
+      border: 1px solid #62c4af;
+      padding: 30px
+      }
+      .border_outer{
+      border: 1px solid #524d4d  ;
+      padding: 30px
+      }
+      }
+   </style>
+   <body>
+      <div class="container">
+         <form action="/action_page.php">
+            <div class="border_outer">
+               <h2>Simulation Creation</h2>
+               <div class="border">
+                  <div class="form-group">
+                     <label for="Simulationion_name">Simulation Name:</label>
+                     <input type="text" class="form-control" id="Simulationion_name" placeholder="Enter Simulation Name" name="Simulationion_name">
+                  </div>
+                  <div class="form-group">
+                     <!-- State Button -->
+                     <label for="state_id" class="control-label">Number of Participants</label>
+                     <select class="form-control" id="user_number">
+                        <option value="AL">Select Number</option>
+                        <option value="AK">2</option>
+                        <option value="AZ">3</option>
+                        <option value="AR">4</option>
+                        <option value="CA">5</option>
+                        <option value="CO">6</option>
+                        <option value="CT">7</option>
+                     </select>
+                  </div>
+               </div>
+               <div>
+                  <label col-sm-2 for="pwd">Add Admin Roles and names</label>
+                  <button type="button" class="btn btn-info" style="margin-top:10px;margin-bottom:10px;">Add New</button>
+               </div>
+               <div class="border">
+                  <table class="table table-bordered">
+                     <tr>
+                        <th>S.No</th>
+                        <th>Role</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Delete</th>
+                     </tr>
+                     <tr>
+                        <td>1</td>
+                        <td>CEO</td>
+                        <td>mahesh</td>
+                        <td>Image</td>
+                        <td><a href="">Delete</a></td>
+                     </tr>
+                     <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><a href="">Delete</a></td>
+                     </tr>
+                  </table>
+               </div>
+               <h2>Color for terminals</h2>
+               <div class="border">
+                  <div>
+                     <input type="color" id="head" name="head"
+                        value="#e66465">
+                     <label for="head">Terminal1</label>
+                  </div>
+                  <div>
+                     <input type="color" id="head" name="head"
+                        value="#e66465">
+                     <label for="head">Terminal2</label>
+                  </div>
+                  <div>
+                     <input type="color" id="head" name="head"
+                        value="#e66465">
+                     <label for="head">Terminal3</label>
+                  </div>
+                  <div>
+                     <input type="color" id="head" name="head"
+                        value="#e66465">
+                     <label for="head">Terminal4</label>
+                  </div>
+                  <div>
+                     <input type="color" id="head" name="head"
+                        value="#e66465">
+                     <label for="head">Terminal5</label>
+                  </div>
+                  <div>
+                     <input type="color" id="head" name="head"
+                        value="#e66465">
+                     <label for="head">Terminal6</label>
+                  </div>
+                  <div>
+                     <input type="color" id="head" name="head"
+                        value="#e66465">
+                     <label for="head">Terminal7</label>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12">
+                     <div class="col-6">
+                        <button type="button" class="btn btn-primary btn-lg" style="margin-top:10px;margin-bottom:10px; margin-left:500px ">Save</button>
+                     </div>
+                     <div class="col-6">
+                        <button type="button" class="btn btn-primary btn-lg" style="margin-top:-90px;margin-left:600px ">Start Simulation</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
+   </body>
+</html>

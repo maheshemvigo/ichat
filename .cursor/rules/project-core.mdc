@@ -1,0 +1,37 @@
+---
+description: Core project rules for London School Chat — legacy stack and conventions
+alwaysApply: true
+---
+
+# London School Chat — Core Rules
+
+## Stack (do not upgrade in feature work)
+
+- Laravel 5.6, PHP 7.1+
+- Vue 2.5, Laravel Mix 2, node-sass 4
+- MySQL 5.7, Pusher, Docker
+
+## Forbidden in new code
+
+- PHP 8+ syntax (typed properties, match, named args, union types)
+- Laravel 8+ features (facades/helpers not in 5.6)
+- Vue 3 Composition API, Vite
+- Breaking existing private chat or token login flows
+
+## Code style
+
+- Match existing controller patterns in `SimulationController.php`, `MessageController.php`
+- Use Eloquent/models already in `app/`
+- Keep changes minimal and focused
+- No unrelated refactors in the same PR
+
+## Testing
+
+- PHPUnit 7 in `tests/`
+- Run: `docker compose exec app vendor/bin/phpunit`
+- Mock external services (OpenAI, S3, Pusher) in tests
+
+## Docs
+
+- Feature specs live in `.cursor/features/`
+- Agent personas in `.cursor/agents/`

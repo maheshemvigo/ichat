@@ -1,0 +1,136 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lbs-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8080
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ichat
+      DB_USERNAME: ichat
+      DB_PASSWORD: ichat_secret
+      LLM_REPORT_ENABLED: "true"
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_API_URL: ${LLM_API_URL:-https://api.openai.com/v1/chat/completions}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+      QUEUE_DRIVER: ${QUEUE_DRIVER:-database}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION:-eu-west-1}
+      AWS_BUCKET: ${AWS_BUCKET:-ichat-lbs}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - lbs
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lbs-queue
+    restart: unless-stopped
+    working_dir: /var/www/html
+    command: php artisan queue:work database --sleep=3 --tries=2 --timeout=3600
+    volumes:
+      - .:/var/www/html
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8080
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: ichat
+      DB_USERNAME: ichat
+      DB_PASSWORD: ichat_secret
+      QUEUE_DRIVER: database
+      LLM_REPORT_ENABLED: "true"
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_API_URL: ${LLM_API_URL:-https://api.openai.com/v1/chat/completions}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION:-eu-west-1}
+      AWS_BUCKET: ${AWS_BUCKET:-ichat-lbs}
+    depends_on:
+      db:
+        condition: service_healthy
+      app:
+        condition: service_started
+    networks:
+      - lbs
+
+  web:
+    image: nginx:1.25-alpine
+    container_name: lbs-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      app:
+        condition: service_started
+    networks:
+      - lbs
+
+  db:
+    image: mysql:5.7
+    container_name: lbs-mysql
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: ichat
+      MYSQL_USER: ichat
+      MYSQL_PASSWORD: ichat_secret
+      MYSQL_ROOT_PASSWORD: root_secret
+    volumes:
+      - lbs_mysql_data:/var/lib/mysql
+      - ./ichat.sql:/docker-entrypoint-initdb.d/02-ichat.sql:ro
+      - ./docker/mysql/03-missing-tables.sql:/docker-entrypoint-initdb.d/03-missing-tables.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_secret"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks:
+      - lbs
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: lbs-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root_secret
+      UPLOAD_LIMIT: 512M
+      MEMORY_LIMIT: 512M
+      MAX_EXECUTION_TIME: 600
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - lbs
+
+networks:
+  lbs:
+    driver: bridge
+
+volumes:
+  lbs_mysql_data:

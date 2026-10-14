@@ -1,0 +1,206 @@
+
+
+
+
+/* Large desktops and laptops */
+@media (min-width: 1500px) {
+
+
+}
+
+
+
+
+
+
+
+
+@media (min-width: 1200px) and (max-width: 1300px){
+
+    /*HOME*/
+
+
+
+}
+
+/*.............(min-width: 1200px) and (max-width: 1300px)...........*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+
+    
+
+}
+
+/*.........(min-width: 992px) and (max-width: 1199.98px)............*/
+
+
+
+
+
+
+@media (min-width: 992px) and (max-width: 1099px) { 
+
+    
+}
+/*.........(min-width: 992px) and (max-width: 1099px)............*/
+
+
+
+
+
+
+@media (min-width: 768px) and (max-width: 991px) { 
+
+    /*HOME*/
+
+
+   
+
+
+}
+/*.............(min-width: 768px) and (max-width: 991px)..............*/
+
+
+
+
+
+
+@media (max-width: 867px) {
+
+
+
+
+}
+/*...............(max-width: 867px).................*/
+
+
+
+
+
+@media (max-width: 767px) {
+
+
+
+    h2 {
+        font-size: 22px !important;
+        line-height: 18px !important;
+        margin-top: 10px !important;
+        padding-bottom: 7px !important;
+        margin-bottom: 12px !important;
+    }
+
+    p {
+        font-size: 13px !important;
+        line-height: 20px !important;
+    }
+    .snavvy {
+        width: calc(70%) !important;
+    }
+
+
+
+
+
+
+
+}
+/*...............(max-width: 767px.................*/
+
+
+
+
+
+
+@media (max-width: 575px) {
+
+
+
+    h2 {
+        font-size: 19px !important;
+        line-height: 16px !important;
+        margin-top: 10px !important;
+        padding-bottom: 7px !important;
+        margin-bottom: 12px !important;
+    }
+    h5 {
+        font-size: 14px !important;
+
+    }
+    h3 {
+        margin-top: 10px !important;
+        font-size: 16px !important;
+        margin-bottom: 10px !important;
+    }
+    .snavvy {
+        width: 100% !important;
+    }
+
+    .com-link {
+        width: auto;
+        height: 30px;
+        font-size: 12px;
+        line-height: 32px;
+        display: inline-block;
+        padding: 0px 21px;
+    }
+
+  
+
+
+}
+/*..............(max-width: 575px)................*/
+
+
+
+@media (max-width: 400px) {
+
+    h2 {
+        font-size: 17px !important;
+        line-height: 16px !important;
+        margin-bottom: 10px !important;
+    }
+    p {
+        font-size: 12px !important;
+        line-height: 16px !important;
+        margin-bottom: 15px !important;
+    }
+    .carousel_cap {
+        display: none;
+    }
+
+
+    
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/*..............(max-width: 400px)................*/
+
+
+
+

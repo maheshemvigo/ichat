@@ -1,0 +1,28 @@
+.online-users,.messages{
+  overflow-y:scroll;
+  height:100vh;
+}
+#linkid-p{
+color:#7ab5be;
+text-decoration: underline;
+}
+#linkid-p:hover {
+color: #fff;
+}
+.txt-formatin-p{
+padding: 1em;
+font-size: calc(0.6vw + 0.6em);
+direction: ltr;
+/* width: 30vw; */
+margin:auto;
+text-align:justify;
+word-break: break-word;
+white-space: pre-line;
+overflow-wrap: break-word;
+-ms-word-break: break-word;
+word-break: break-word;
+word-break: break-word;
+-ms-hyphens: auto;
+-moz-hyphens: auto;
+-webkit-hyphens: auto;
+}

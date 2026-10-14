@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": ".cursor/hooks/session-context.sh"
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/validate-php-syntax.sh",
+        "matcher": "Write|EditNotebook"
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": ".cursor/hooks/block-dangerous-git.sh",
+        "matcher": "git\\s+(push\\s+--force|reset\\s+--hard|clean\\s+-fd)"
+      }
+    ]
+  }
+}

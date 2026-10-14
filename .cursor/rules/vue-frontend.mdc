@@ -1,0 +1,31 @@
+---
+description: Vue 2 frontend conventions for chat UI
+globs: resources/assets/js/**/*.vue
+alwaysApply: false
+---
+
+# Vue 2 Frontend Rules
+
+## Components
+
+- Options API only (`export default { data(), methods, mounted() }`)
+- Main chat UI: `resources/assets/js/components/PrivateChat.vue`
+- Use existing axios, Laravel Echo, Pusher patterns in `bootstrap.js`
+
+## Real-time
+
+- Private chat: channel `privatechat.{receiver_id}`
+- Report summary: end simulation redirect — see `.cursor/features/report-summary.md`
+
+## Build
+
+```bash
+npm install
+npm run production
+```
+
+## Do not
+
+- Convert to Vue 3 or Composition API
+- Add new build tooling (Vite, etc.)
+- Change webpack config unless required for the feature
